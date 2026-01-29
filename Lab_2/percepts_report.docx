@@ -1,0 +1,7 @@
+Sensor Agent Percepts Report for Lab 2
+
+The SensorAgent continuously monitors a simulated environment with multiple areas. 
+Each area can experience disasters such as floods, fires, and earthquakes. 
+The agent generates random severity levels from 0 to 10 for each disaster type, representing the intensity of the event. 
+These percepts are logged with timestamps, providing a record of the environmental state. 
+In a more advanced multi-agent system, these percepts could guide decision-making and responses to disasters.
