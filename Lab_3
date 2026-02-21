@@ -1,0 +1,74 @@
+# LAB 3: Goals, Events, and Reactive Behavior
+# Objective: To model agent goals and event-triggered behavior
+# Index Number: 11290273
+
+
+
+# AGENT GOALS
+# G1: Monitor the environment
+# G2: Assess detected disaster
+# G3: Rescue victims
+# G4: Report status and return to idle
+
+
+
+# EVENTS FROM SENSORS
+# fire_detected
+# flood_detected
+# victim_found
+# rescue_complete
+# no_threat
+
+
+
+# FSM STATES
+# IDLE
+# ASSESSING
+# RESCUING
+# REPORTING
+
+
+
+class RescueAgentFSM:
+    def __init__(self):
+        self.state = "IDLE"
+
+
+
+    def handle_event(self, event):
+        print("\nEvent:", event)
+        print("State before:", self.state)
+
+        if self.state == "IDLE":
+            if event == "fire_detected" or event == "flood_detected":
+                self.state = "ASSESSING"
+
+        elif self.state == "ASSESSING":
+            if event == "victim_found":
+                self.state = "RESCUING"
+            elif event == "no_threat":
+                self.state = "REPORTING"
+
+        elif self.state == "RESCUING":
+            if event == "rescue_complete":
+                self.state = "REPORTING"
+
+        elif self.state == "REPORTING":
+            self.state = "IDLE"
+
+        print("State after:", self.state)
+
+
+
+# TESTING THE FSM
+
+agent = RescueAgentFSM()
+
+events = [
+    "fire_detected",
+    "victim_found",
+    "rescue_complete"
+]
+
+for e in events:
+    agent.handle_event(e) 
